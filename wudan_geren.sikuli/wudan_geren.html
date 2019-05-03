@@ -1,0 +1,278 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>wudan_geren.sikuli</h2> <a href="wudan_geren.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">import</span> random
+
+<span class="cmt">#global variable</span>
+men_pai = None
+
+<span class="cmt">#清理满屏</span>
+<span class="kw">def</span> refresh_main():
+    <span class="skw">click</span>(Location(<span class="dig">1819</span>, <span class="dig">104</span>))
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    mapclose = exists(<img src="1555907993509.png" />)
+    <span class="kw">if</span> mapclose:
+        <span class="skw">click</span>(mapclose)
+
+<span class="kw">def</span> confirm_check():
+    ge_ren_confirm = exists(<img src="1555910648795.png" />)
+    <span class="kw">if</span> ge_ren_confirm:
+        <span class="skw">click</span>(ge_ren_confirm)
+
+<span class="kw">def</span> enter_huo_dong():
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    activity = exists(<img src="1555907705355.png" />)
+    <span class="kw">if</span> activity:
+        <span class="skw">click</span>(activity)
+
+<span class="kw">def</span> enter_hang_dang():
+    hang_dang_off = exists(<img src="1556075962049.png" />)
+    <span class="kw">if</span> hang_dang_off:
+        <span class="skw">click</span>(hang_dang_off)
+
+<span class="kw">def</span> enter_jiang_hu():
+    jiang_hu = exists(<img src="1556769526168.png" />)
+
+    <span class="kw">if</span> jiang_hu:
+        <span class="skw">click</span>(jiang_hu)
+
+<span class="kw">def</span> qian_wang():
+    <span class="skw">click</span>(<img src="1555908648951.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    confirm_qian_wang = exists(<img src="1555909003307.png" />)
+    <span class="kw">if</span> confirm_qian_wang:
+        <span class="skw">click</span>(confirm_qian_wang)
+    <span class="skw">wait</span>(<span class="dig">5</span>)
+
+<span class="kw">def</span> loop_check(img_target, times = <span class="dig">20</span>, raise_error = True):
+    max_retry = times
+    img_start = exists(img_target)
+    <span class="kw">while</span> <span class="kw">not</span> img_start:
+        <span class="skw">wait</span>(<span class="dig">10</span>)
+        img_start = exists(img_target)
+        max_retry = max_retry - <span class="dig">1</span>
+        <span class="kw">if</span> max_retry == <span class="dig">0</span>:
+            <span class="kw">if</span> raise_error:
+                <span class="kw">raise</span> Exception(<span class="str">'image target should have been found'</span>)
+            <span class="kw">else</span>:
+                <span class="kw">return</span> <span class="dig">0</span>
+    <span class="skw">click</span>(img_start)
+
+<span class="kw">def</span> ti_jiao():
+    ge_ren_purchase = exists(<img src="1556059325267.png" />)
+    <span class="kw">if</span> ge_ren_purchase:
+        <span class="skw">click</span>(ge_ren_purchase)
+
+refresh_main()
+
+<span class="cmt">#进入活动</span>
+enter_huo_dong()
+
+<span class="cmt">#算命</span>
+you_li_menu_off = exists(<img src="1556768004209.png" />)
+<span class="kw">if</span> you_li_menu_off:
+    <span class="skw">click</span>(you_li_menu_off)
+<span class="skw">wait</span>(<span class="dig">1</span>)
+shuan_ming = exists(<img src="1556768124212.png" />)
+
+<span class="kw">if</span> shuan_ming:
+    <span class="kw">print</span>(<span class="str">"shuang ming found"</span>)
+    <span class="skw">click</span>(shuan_ming)
+    qian_wang()
+    loop_check(<img src="1556768421023.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1556768484262.png" />)
+    max_height = <span class="dig">768</span>
+    min_height = <span class="dig">288</span>
+    max_width = <span class="dig">1413</span>
+    min_width = <span class="dig">521</span>
+    height1 = random.randrange(min_height, max_height)
+    height2 = random.randrange(min_height, max_height)
+    height3 = random.randrange(min_height, max_height)
+    width1 = random.randrange(min_width, max_width)
+    width2 = random.randrange(min_width, max_width)
+    width3 = random.randrange(min_width, max_width)
+    <span class="skw">dragDrop</span>( Location(width1, height1), Location(width2, height2))
+    <span class="skw">dragDrop</span>( Location(width2, height2), Location(width3, height3))
+    <span class="skw">click</span>(<img src="1556769057340.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1556769083581.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    confirm_check()
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    refresh_main()
+
+<span class="cmt">#算命完成</span>
+<span class="cmt">#课业</span>
+<span class="skw">wait</span>(<span class="dig">1</span>)
+enter_huo_dong()
+<span class="skw">wait</span>(<span class="dig">1</span>)
+enter_jiang_hu()
+ke_yi = exists(<img src="1555989218071.png" />)
+<span class="kw">if</span> ke_yi:
+    <span class="kw">print</span>(<span class="str">"wu dang found"</span>)
+    men_pai = <span class="str">"WuDang"</span>
+    <span class="skw">click</span>(ke_yi)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    qian_wang()
+    loop_check(<img src="1555989558087.png" />,<span class="dig">20</span>,False)
+<span class="cmt">#选难的</span>
+    hard_key_yi = exists(<img src="1555909753530.png" />)
+    refresh_tries = <span class="dig">5</span>
+    <span class="kw">while</span> <span class="kw">not</span> hard_key_yi <span class="kw">and</span> refresh_tries &gt; <span class="dig">0</span>:
+        <span class="skw">click</span>(<img src="1555909776671.png" />)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">click</span>(<img src="1556058744449.png" />)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+
+        hard_key_yi = exists(<img src="1555909753530.png" />)
+        refresh_tries = refresh_tries - <span class="dig">1</span>
+    <span class="kw">if</span> hard_key_yi:
+        <span class="skw">click</span>(hard_key_yi)
+
+    loop_count = <span class="dig">0</span>
+
+    <span class="kw">while</span> loop_count &lt; <span class="dig">8</span>:
+        <span class="kw">print</span>(<span class="str">"Wait Ke Yi Event"</span>)
+        <span class="skw">wait</span>(<span class="dig">60</span>)
+        <span class="cmt">#问答</span>
+        ge_ren_wen_da = Region(<span class="dig">1740</span>,<span class="dig">198</span>,<span class="dig">154</span>,<span class="dig">37</span>)
+        maxloop = <span class="dig">10</span>
+        <span class="kw">while</span> ge_ren_wen_da.exits(<img src="1556171177430.png" />) <span class="kw">and</span> maxloop&gt; <span class="dig">0</span>:
+            <span class="skw">click</span>(Location(<span class="dig">1553</span>, <span class="dig">316</span>))
+            <span class="skw">wait</span>(<span class="dig">2</span>)
+            maxloop = maxloop - <span class="dig">1</span>
+        ti_jiao()
+
+        ge_ren_goumai = exists(<img src="1555910620958.png" />)
+        <span class="kw">while</span> ge_ren_goumai:
+            <span class="skw">click</span>(ge_ren_goumai)
+            <span class="skw">wait</span>(<span class="dig">1</span>)
+            <span class="skw">click</span>(<img src="1556059218727.png" />)
+            <span class="skw">wait</span>(<span class="dig">10</span>)
+            ge_ren_purchase = exists(<img src="1556059325267.png" />)
+            <span class="kw">if</span> ge_ren_purchase:
+                <span class="skw">click</span>(ge_ren_purchase)
+            <span class="kw">else</span>:
+                <span class="cmt">#刷到任务栏</span>
+                <span class="skw">click</span>(Location(<span class="dig">31</span>, <span class="dig">268</span>))
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="skw">click</span>(Location(<span class="dig">235</span>, <span class="dig">198</span>))
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                <span class="skw">click</span>(Location(<span class="dig">222</span>, <span class="dig">310</span>))
+                <span class="skw">wait</span>(<span class="dig">1</span>)
+                ge_ren_goumai = exists(<img src="1555910620958.png" />)
+            confirm_check()
+
+        loop_count = loop_count + <span class="dig">1</span>
+check_ke_yi_complete = exists(<img src="1556061316177.png" />)
+<span class="kw">if</span> check_ke_yi_complete:
+    men_pai = <span class="str">"WuDang"</span>
+<span class="cmt">#课业结束    </span>
+<span class="cmt">#帮派开始</span>
+enter_huo_dong()
+bang_pai_menu_off = exists(<img src="1556065352531.png" />)
+<span class="kw">if</span> bang_pai_menu_off:
+    <span class="skw">click</span>(bang_pai_menu_off)
+
+bangpai_region = Region(<span class="dig">253</span>,<span class="dig">268</span>,<span class="dig">149</span>,<span class="dig">128</span>)
+<span class="kw">if</span> bangpai_region.exists(<img src="1556073702671.png" />):
+    <span class="skw">click</span>(bangpai_region)
+
+    qian_wang()
+    loop_check(<img src="1556072458791.png" />)
+    confirm_check()
+    loop_check(<img src="1556074355535.png" />, <span class="dig">30</span>, False)
+    <span class="kw">print</span>(<span class="str">"complete bang pai xu qiu"</span>)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Location(<span class="dig">1273</span>, <span class="dig">856</span>))
+    <span class="skw">wait</span>(<span class="dig">10</span>)
+    ti_jiao()
+<span class="cmt">#帮派结束           </span>
+refresh_main()
+
+<span class="cmt">#白帮</span>
+enter_huo_dong()
+<span class="skw">wait</span>(<span class="dig">1</span>)
+enter_hang_dang()
+<span class="skw">wait</span>(<span class="dig">1</span>)
+bai_bang_region = Region(<span class="dig">1465</span>,<span class="dig">279</span>,<span class="dig">141</span>,<span class="dig">129</span>)
+<span class="kw">if</span> bai_bang_region.exists(<img src="1556076278638.png" />):
+    <span class="skw">click</span>(bai_bang_region.offset(<span class="dig">0</span>,<span class="dig">120</span>))
+    loop_check(<img src="1556076399744.png" />)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    jie_bang = exists(<img src="1556076529190.png" />)
+    <span class="kw">if</span> jie_bang:
+        <span class="skw">click</span>(jie_bang)
+</pre>
+</body>
+</html>
