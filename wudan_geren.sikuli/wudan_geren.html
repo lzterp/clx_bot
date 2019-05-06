@@ -75,6 +75,40 @@
 <span class="cmt">#global variable</span>
 men_pai = None
 
+<span class="kw">def</span> basic_hit():
+    <span class="skw">click</span>(<img src="1556941447892.png" />)
+
+<span class="kw">def</span> swap_attacks():
+    <span class="skw">dragDrop</span>(Location(<span class="dig">1598</span>, <span class="dig">589</span>),Location(<span class="dig">1545</span>, <span class="dig">732</span>))
+
+
+<span class="kw">def</span> fight():
+    basic_hit()
+    ring = exists(<img src="1556942519073.png" />)
+    <span class="kw">if</span> ring:
+        <span class="skw">click</span>(ring)
+    <span class="kw">else</span>:
+        swap_attacks()
+        basic_hit()
+        basic_hit()
+        basic_hit()
+    <span class="skw">wait</span>(<span class="dig">0.5</span>)
+    <span class="skw">click</span>(<img src="1556941763205.png" />)
+    <span class="skw">wait</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(<img src="1556941830928.png" />)
+    <span class="skw">wait</span>(<span class="dig">1.5</span>)
+    <span class="skw">click</span>(<img src="1557112308893.png" />)
+    swap_attacks()
+    <span class="skw">click</span>(<img src="1556942099105.png" />)
+    <span class="skw">wait</span>(<span class="dig">1.6</span>)
+    <span class="skw">click</span>(<img src="1556942132114.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1556942397258.png" />)
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    swap_attacks()
+    basic_hit()
+    basic_hit()
+
 <span class="cmt">#清理满屏</span>
 <span class="kw">def</span> refresh_main():
     <span class="skw">click</span>(Location(<span class="dig">1819</span>, <span class="dig">104</span>))
@@ -128,8 +162,10 @@ men_pai = None
     <span class="skw">click</span>(img_start)
 
 <span class="kw">def</span> ti_jiao():
+    <span class="kw">print</span>(<span class="str">"ti jiao"</span>)
     ge_ren_purchase = exists(<img src="1556059325267.png" />)
     <span class="kw">if</span> ge_ren_purchase:
+        <span class="kw">print</span>(<span class="str">"exist ti jiao"</span>)
         <span class="skw">click</span>(ge_ren_purchase)
 
 refresh_main()
@@ -201,38 +237,40 @@ ke_yi = exists(<img src="1555989218071.png" />)
 
     loop_count = <span class="dig">0</span>
 
-    <span class="kw">while</span> loop_count &lt; <span class="dig">8</span>:
+    <span class="kw">while</span> loop_count &lt; <span class="dig">80</span>:
         <span class="kw">print</span>(<span class="str">"Wait Ke Yi Event"</span>)
-        <span class="skw">wait</span>(<span class="dig">60</span>)
+        <span class="skw">wait</span>(<span class="dig">15</span>)
         <span class="cmt">#问答</span>
-        ge_ren_wen_da = Region(<span class="dig">1740</span>,<span class="dig">198</span>,<span class="dig">154</span>,<span class="dig">37</span>)
-        maxloop = <span class="dig">10</span>
-        <span class="kw">while</span> ge_ren_wen_da.exits(<img src="1556171177430.png" />) <span class="kw">and</span> maxloop&gt; <span class="dig">0</span>:
-            <span class="skw">click</span>(Location(<span class="dig">1553</span>, <span class="dig">316</span>))
-            <span class="skw">wait</span>(<span class="dig">2</span>)
-            maxloop = maxloop - <span class="dig">1</span>
+<span class="cmt">#        ge_ren_wen_da = Region(1740,198,154,37)</span>
+<span class="cmt">#        maxloop = 10</span>
+<span class="cmt">#        while ge_ren_wen_da.exists("1556171177430.png") and maxloop&gt; 0:</span>
+<span class="cmt">#            print("wen da click")</span>
+<span class="cmt">#            click(Location(1553, 316))</span>
+<span class="cmt">#            wait(2)</span>
+<span class="cmt">#            maxloop = maxloop - 1</span>
         ti_jiao()
 
         ge_ren_goumai = exists(<img src="1555910620958.png" />)
         <span class="kw">while</span> ge_ren_goumai:
+            <span class="kw">print</span>(<span class="str">"gou ma"</span>)
             <span class="skw">click</span>(ge_ren_goumai)
             <span class="skw">wait</span>(<span class="dig">1</span>)
-            <span class="skw">click</span>(<img src="1556059218727.png" />)
+            confirm_check()
             <span class="skw">wait</span>(<span class="dig">10</span>)
             ge_ren_purchase = exists(<img src="1556059325267.png" />)
             <span class="kw">if</span> ge_ren_purchase:
                 <span class="skw">click</span>(ge_ren_purchase)
             <span class="kw">else</span>:
                 <span class="cmt">#刷到任务栏</span>
-                <span class="skw">click</span>(Location(<span class="dig">31</span>, <span class="dig">268</span>))
+                <span class="kw">print</span>(<span class="str">"buy more click"</span>)
+                <span class="skw">click</span>(Location(<span class="dig">166</span>, <span class="dig">336</span>))
                 <span class="skw">wait</span>(<span class="dig">1</span>)
                 <span class="skw">click</span>(Location(<span class="dig">235</span>, <span class="dig">198</span>))
                 <span class="skw">wait</span>(<span class="dig">1</span>)
                 <span class="skw">click</span>(Location(<span class="dig">222</span>, <span class="dig">310</span>))
                 <span class="skw">wait</span>(<span class="dig">1</span>)
-                ge_ren_goumai = exists(<img src="1555910620958.png" />)
-            confirm_check()
-
+            ge_ren_goumai = exists(<img src="1555910620958.png" />)
+        confirm_check()
         loop_count = loop_count + <span class="dig">1</span>
 check_ke_yi_complete = exists(<img src="1556061316177.png" />)
 <span class="kw">if</span> check_ke_yi_complete:
@@ -255,8 +293,9 @@ bangpai_region = Region(<span class="dig">253</span>,<span class="dig">268</span
     <span class="kw">print</span>(<span class="str">"complete bang pai xu qiu"</span>)
     <span class="skw">wait</span>(<span class="dig">2</span>)
     <span class="skw">click</span>(Location(<span class="dig">1273</span>, <span class="dig">856</span>))
-    <span class="skw">wait</span>(<span class="dig">10</span>)
+    <span class="skw">wait</span>(<span class="dig">25</span>)
     ti_jiao()
+    <span class="skw">wait</span>(<span class="dig">20</span>)
 <span class="cmt">#帮派结束           </span>
 refresh_main()
 
@@ -266,13 +305,26 @@ enter_huo_dong()
 enter_hang_dang()
 <span class="skw">wait</span>(<span class="dig">1</span>)
 bai_bang_region = Region(<span class="dig">1465</span>,<span class="dig">279</span>,<span class="dig">141</span>,<span class="dig">129</span>)
-<span class="kw">if</span> bai_bang_region.exists(<img src="1556076278638.png" />):
+<span class="kw">while</span> bai_bang_region.exists(<img src="1556076278638.png" />):
     <span class="skw">click</span>(bai_bang_region.offset(<span class="dig">0</span>,<span class="dig">120</span>))
     loop_check(<img src="1556076399744.png" />)
     <span class="skw">wait</span>(<span class="dig">2</span>)
     jie_bang = exists(<img src="1556076529190.png" />)
     <span class="kw">if</span> jie_bang:
         <span class="skw">click</span>(jie_bang)
+        <span class="skw">wait</span>(<span class="dig">5</span>)
+        target1 = Location(<span class="dig">1333</span>, <span class="dig">639</span>)
+        <span class="kw">if</span> target1:
+            <span class="kw">print</span>(<span class="str">"chase target"</span>)
+            <span class="skw">click</span>(target1)
+            <span class="skw">wait</span>(<span class="dig">60</span>)
+            fight()
+            fight()
+    <span class="kw">print</span>(<span class="str">"assume bai bang compete"</span>)
+    enter_huo_dong()
+    <span class="skw">wait</span>(<span class="dig">1</span>)
+    enter_hang_dang()
+    <span class="skw">wait</span>(<span class="dig">1</span>)
 </pre>
 </body>
 </html>

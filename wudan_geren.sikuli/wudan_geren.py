@@ -3,6 +3,40 @@ import random
 #global variable
 men_pai = None
 
+def basic_hit():
+    click("1556941447892.png")
+
+def swap_attacks():
+    dragDrop(Location(1598, 589),Location(1545, 732))
+
+
+def fight():
+    basic_hit()
+    ring = exists("1556942519073.png")
+    if ring:
+        click(ring)
+    else:
+        swap_attacks()
+        basic_hit()
+        basic_hit()
+        basic_hit()
+    wait(0.5)
+    click("1556941763205.png")
+    wait(2)
+    click("1556941830928.png")
+    wait(1.5)
+    click("1557112308893.png")   
+    swap_attacks()
+    click("1556942099105.png")
+    wait(1.6)
+    click("1556942132114.png")
+    wait(1)
+    click("1556942397258.png")
+    wait(1)
+    swap_attacks()
+    basic_hit()
+    basic_hit()
+
 #清理满屏
 def refresh_main():
     click(Location(1819, 104))
@@ -56,8 +90,10 @@ def loop_check(img_target, times = 20, raise_error = True):
     click(img_start)
 
 def ti_jiao():
+    print("ti jiao")
     ge_ren_purchase = exists("1556059325267.png")
     if ge_ren_purchase:
+        print("exist ti jiao")
         click(ge_ren_purchase)
     
 refresh_main()
@@ -129,38 +165,40 @@ if ke_yi:
 
     loop_count = 0
 
-    while loop_count < 8:
+    while loop_count < 80:
         print("Wait Ke Yi Event")
-        wait(60)
+        wait(15)
         #问答
-        ge_ren_wen_da = Region(1740,198,154,37)
-        maxloop = 10
-        while ge_ren_wen_da.exits("1556171177430.png") and maxloop> 0:
-            click(Location(1553, 316))
-            wait(2)
-            maxloop = maxloop - 1
+#        ge_ren_wen_da = Region(1740,198,154,37)
+#        maxloop = 10
+#        while ge_ren_wen_da.exists("1556171177430.png") and maxloop> 0:
+#            print("wen da click")
+#            click(Location(1553, 316))
+#            wait(2)
+#            maxloop = maxloop - 1
         ti_jiao()
                  
         ge_ren_goumai = exists("1555910620958.png") 
         while ge_ren_goumai:
+            print("gou ma")
             click(ge_ren_goumai)
             wait(1)
-            click("1556059218727.png")
+            confirm_check()
             wait(10)
             ge_ren_purchase = exists("1556059325267.png")
             if ge_ren_purchase:
                 click(ge_ren_purchase)
             else:
                 #刷到任务栏
-                click(Location(31, 268))
+                print("buy more click")
+                click(Location(166, 336))
                 wait(1)
                 click(Location(235, 198))
                 wait(1)
                 click(Location(222, 310))
                 wait(1)
-                ge_ren_goumai = exists("1555910620958.png") 
-            confirm_check()
-   
+            ge_ren_goumai = exists("1555910620958.png") 
+        confirm_check()
         loop_count = loop_count + 1
 check_ke_yi_complete = exists("1556061316177.png")
 if check_ke_yi_complete:
@@ -183,8 +221,9 @@ if bangpai_region.exists("1556073702671.png"):
     print("complete bang pai xu qiu")
     wait(2)
     click(Location(1273, 856))
-    wait(10)
+    wait(25)
     ti_jiao()
+    wait(20)
 #帮派结束           
 refresh_main()
 
@@ -194,14 +233,27 @@ wait(1)
 enter_hang_dang()
 wait(1)
 bai_bang_region = Region(1465,279,141,129)
-if bai_bang_region.exists("1556076278638.png"):
+while bai_bang_region.exists("1556076278638.png"):
     click(bai_bang_region.offset(0,120))
     loop_check("1556076399744.png")
     wait(2)
     jie_bang = exists("1556076529190.png")
     if jie_bang:
         click(jie_bang)
-    
+        wait(5)
+        target1 = Location(1333, 639)
+        if target1:
+            print("chase target")
+            click(target1)
+            wait(60)
+            fight()
+            fight()
+    print("assume bai bang compete")
+    enter_huo_dong()
+    wait(1)
+    enter_hang_dang()
+    wait(1)
+        
     
     
             
